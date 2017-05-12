@@ -1,0 +1,20 @@
+workspace:
+  base: /srv/app
+  path: src/github.com/go-training/drone-golang-example
+
+clone:
+  git:
+    image: plugins/git
+    depth: 50
+    tags: true
+
+pipeline:
+  test:
+    image: golang:latest
+    pull: true
+    environment:
+      GOPATH: /srv/app
+    commands:
+      - go test -v .
+    when:
+      event: [ push, tag, pull_request ]
