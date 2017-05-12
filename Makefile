@@ -1,6 +1,9 @@
 
 all: docker_build docker_run
 
+test:
+	go test -v .
+
 docker_build:
 	docker build -t appleboy/go-app .
 
