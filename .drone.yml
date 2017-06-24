@@ -18,3 +18,11 @@ pipeline:
       - make test
     when:
       event: [ push, tag, pull_request ]
+
+  facebook:
+    image: appleboy/drone-facebook
+    secrets: [ fb_page_token, fb_verify_token ]
+    pull: true
+    to: 1234973386524610
+    when:
+      status: [ changed, failure ]
