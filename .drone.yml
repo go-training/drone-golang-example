@@ -1,5 +1,5 @@
 workspace:
-  base: /srv/app
+  base: /go
   path: src/github.com/go-training/drone-golang-example
 
 clone:
@@ -12,8 +12,6 @@ pipeline:
   test:
     image: golang:latest
     pull: true
-    environment:
-      GOPATH: /srv/app
     commands:
       - make test
     when:
