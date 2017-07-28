@@ -10,7 +10,7 @@ clone:
 
 pipeline:
   backend:
-    image: golang:latest
+    image: golang
     pull: true
     secrets: [ test ]
     commands:
