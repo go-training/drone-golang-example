@@ -9,7 +9,7 @@ clone:
     tags: true
 
 pipeline:
-  test:
+  backend:
     image: golang:latest
     pull: true
     commands:
