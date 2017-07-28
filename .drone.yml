@@ -14,8 +14,6 @@ pipeline:
     pull: true
     commands:
       - make test
-    when:
-      event: [ push, tag, pull_request ]
 
   facebook:
     image: appleboy/drone-facebook
