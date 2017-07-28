@@ -14,10 +14,9 @@ pipeline:
     pull: true
     secrets: [ test ]
     commands:
+      - echo ${test}
       - echo $test
       - echo $api_key
-      - echo $PATH
-      - echo $PWD
       - make fmt-check
       - make test
       - sh test.sh
