@@ -4,4 +4,3 @@ set -e
 
 make fmt-check
 make test
-echo $appleboy

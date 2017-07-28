@@ -14,9 +14,6 @@ pipeline:
     pull: true
     secrets: [ test ]
     commands:
-      - echo ${appleboy}
-      - echo $appleboy
-      - echo $api_key
       - make fmt-check
       - make test
       - sh test.sh
