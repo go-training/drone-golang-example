@@ -16,10 +16,10 @@ pipeline:
       - api_key=1234567890
     secrets: [ test ]
     commands:
-      - echo ${test}
-      - echo ${api_key}
-      - echo ${PATH}
-      - echo ${PWD}
+      - echo $test
+      - echo $api_key
+      - echo $PATH
+      - echo $PWD
       - make fmt-check
       - make test
       - sh test.sh
