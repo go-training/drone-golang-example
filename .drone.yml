@@ -12,7 +12,6 @@ pipeline:
   backend:
     image: golang
     pull: true
-    secrets: [ test, appleboy ]
     secrets:
       - source: appleboy
         target: appleboy_target
