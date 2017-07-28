@@ -13,8 +13,6 @@ pipeline:
     image: golang:latest
     pull: true
     secrets: [ test ]
-    environment:
-      - api_key=1234567890
     commands:
       - echo $test
       - echo $api_key
