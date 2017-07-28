@@ -12,7 +12,11 @@ pipeline:
   backend:
     image: golang:latest
     pull: true
+    environment:
+      - test=appleboy
     commands:
+      - echo $test
+      - echo $PWD
       - make fmt-check
       - make test
 
