@@ -17,6 +17,7 @@ pipeline:
     commands:
       - echo $test
       - echo $PWD
+      - echo $$PWD
       - make fmt-check
       - make test
 
