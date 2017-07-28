@@ -16,8 +16,8 @@ pipeline:
       - test=appleboy
     commands:
       - echo $test
-      - echo $PWD
-      - echo $$PWD
+      - echo ${PATH}
+      - echo ${PWD}
       - make fmt-check
       - make test
 
