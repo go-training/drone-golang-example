@@ -8,6 +8,5 @@ func HelloWorld() string {
 }
 
 func main() {
-	hello := HelloWorld()
-	fmt.Println(hello)
+	fmt.Println(HelloWorld())
 }
