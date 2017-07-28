@@ -12,8 +12,9 @@ pipeline:
   backend:
     image: golang
     pull: true
-    secrets: [ test ]
+    secrets: [ test, appleboy ]
     commands:
+      - echo $appleboy
       - make fmt-check
       - make test
       - sh test.sh
