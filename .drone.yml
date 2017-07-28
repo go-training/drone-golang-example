@@ -13,12 +13,13 @@ pipeline:
     image: golang
     pull: true
     secrets: [ test, appleboy ]
+    secrets:
+      - source: appleboy
+        target: appleboy_target
     commands:
-      - echo $APPLEBOY
-      - echo $TEST
+      - echo $APPLEBOY_TARGET
       - make fmt-check
       - make test
-      - sh test.sh
 
   facebook:
     image: appleboy/drone-facebook
