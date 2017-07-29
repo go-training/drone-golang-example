@@ -24,14 +24,14 @@ pipeline:
     image: appleboy/drone-scp
     host: 139.59.123.108
     username: drone
-    password: 1234567890
+    secrets:
+      - source: scp_password
+        target: ssh_password
     port: 22
     target: /home/drone/${DRONE_REPO}
     source:
       - main.go
       - main_test.go
-    when:
-      status: success
 
   facebook:
     image: appleboy/drone-facebook
