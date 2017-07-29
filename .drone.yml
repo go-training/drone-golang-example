@@ -36,9 +36,10 @@ pipeline:
     pull: true
     host: 139.59.123.108
     username: drone
-    secrets:
-      - source: scp_password
-        target: ssh_password
+    secrets: [ ssh_key ]
+    # secrets:
+    #   - source: scp_password
+    #     target: ssh_password
     port: 22
     script:
       - echo appleboy
