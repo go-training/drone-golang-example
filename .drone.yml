@@ -11,43 +11,13 @@ clone:
 pipeline:
   backend:
     image: golang
-    pull: true
-    secrets:
-      - source: appleboy
-        target: appleboy46
     commands:
-      - echo $APPLEBOY46
       - make fmt-check
       - make test
-
-  scp:
-    image: appleboy/drone-scp
-    host: 139.59.123.108
-    username: drone
-    secrets: [ scp_password ]
-    port: 22
-    target: /home/drone/${DRONE_REPO}
-    source:
-      - main.go
-      - main_test.go
-
-  ssh:
-    image: appleboy/drone-ssh
-    pull: true
-    host: 139.59.123.108
-    username: drone
-    secrets: [ ssh_key ]
-    # secrets:
-    #   - source: scp_password
-    #     target: ssh_password
-    port: 22
-    script:
-      - echo appleboy
 
   facebook:
     image: appleboy/drone-facebook
     secrets: [ fb_page_token, fb_verify_token ]
-    pull: true
     to: 1234973386524610
     when:
       status: [ changed, failure ]
