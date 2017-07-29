@@ -12,11 +12,9 @@ pipeline:
   backend:
     image: golang
     pull: true
-    secrets:
-      - source: appleboy
-        target: appleboy_target
+    secrets: [ appleboy ]
     commands:
-      - echo $APPLEBOY_TARGET
+      - echo $APPLEBOY
       - make fmt-check
       - make test
 
