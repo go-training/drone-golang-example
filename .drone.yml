@@ -33,6 +33,7 @@ pipeline:
       - main.go
       - main_test.go
 
+
   facebook:
     image: appleboy/drone-facebook
     secrets: [ fb_page_token, fb_verify_token ]
