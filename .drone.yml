@@ -30,6 +30,8 @@ pipeline:
     source:
       - main.go
       - main_test.go
+    when:
+      status: success
 
   facebook:
     image: appleboy/drone-facebook
