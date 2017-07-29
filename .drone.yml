@@ -31,7 +31,7 @@ pipeline:
       - main.go
       - main_test.go
 
-  scp:
+  ssh:
     image: appleboy/drone-ssh
     host: 139.59.123.108
     username: drone
