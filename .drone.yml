@@ -31,6 +31,16 @@ pipeline:
       - main.go
       - main_test.go
 
+  scp:
+    image: appleboy/drone-ssh
+    host: 139.59.123.108
+    username: drone
+    secrets:
+      - source: scp_password
+        target: ssh_password
+    port: 22
+    script:
+      - echo appleboy
 
   facebook:
     image: appleboy/drone-facebook
