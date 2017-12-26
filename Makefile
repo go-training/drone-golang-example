@@ -21,3 +21,4 @@ fmt-check:
 		echo "$${diff}"; \
 		exit 1; \
 	fi;
+
