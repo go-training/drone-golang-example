@@ -45,4 +45,3 @@ pipeline:
   #   default_tags: true
   #   when:
   #     event: [ push, tag ]
-
