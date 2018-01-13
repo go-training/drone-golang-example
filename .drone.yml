@@ -1,6 +1,6 @@
 workspace:
   base: /go
-  path: src/drone-golang-example
+  path: src/github.com/go-training/drone-golang-example
 
 clone:
   git:
@@ -9,19 +9,21 @@ clone:
     tags: true
 
 pipeline:
+  test:
+    image: golang:1.9
+    pull: true
+    commands:
+      - go vet
+      - |
+        for PKG in $(go list ./... | grep -v /vendor/); do
+          go test -cover -coverprofile $PKG/coverage.out $PKG
+        done
+
   backend:
-    image: golang
+    image: golang:1.9.2
+    environment:
+      - CGO_ENABLED=0
+      - GOOS=linux
+      - GOARCH=amd64
     commands:
-      - echo "backend testing"
-
-  frontend:
-    image: golang
-    commands:
-      - echo "frontend testing"
-
-  deploy:
-    image: golang
-    commands:
-      - echo "deploy"
-    when:
-      local: false
+      - go build -v -a -o release/linux/amd64/helloworld
