@@ -14,16 +14,22 @@ pipeline:
     pull: true
     commands:
       - go vet
-      - |
-        for PKG in $(go list ./... | grep -v /vendor/); do
-          go test -cover -coverprofile $PKG/coverage.out $PKG
-        done
+      - go test -v .
 
-  backend:
+  build_linux_amd64:
     image: golang:1.9.2
     environment:
       - CGO_ENABLED=0
       - GOOS=linux
       - GOARCH=amd64
+    commands:
+      - go build -v -a -o release/linux/amd64/helloworld
+
+  build_linux_i386:
+    image: golang:1.9.2
+    environment:
+      - CGO_ENABLED=0
+      - GOOS=linux
+      - GOARCH=386
     commands:
       - go build -v -a -o release/linux/amd64/helloworld
