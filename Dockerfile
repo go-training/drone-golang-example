@@ -1,9 +1,7 @@
-# build stage
-FROM golang:alpine AS build-env
-ADD . /src
-RUN cd /src && CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o app
+FROM plugins/base:multiarch
 
-# final stage
-FROM centurylink/ca-certs
-COPY --from=build-env /src/app /
-ENTRYPOINT ["/app"]
+LABEL maintainer="Bo-Yi Wu <appleboy.tw@gmail.com>"
+
+ADD release/linux/amd64/helloworld /
+
+ENTRYPOINT ["/helloworld"]

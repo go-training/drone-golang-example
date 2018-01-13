@@ -13,11 +13,13 @@ pipeline:
     image: golang:1.9
     pull: true
     commands:
+      - make fmt-check
       - go vet
       - go test -v .
 
   build_linux_amd64:
     image: golang:1.9.2
+    group: build
     environment:
       - CGO_ENABLED=0
       - GOOS=linux
@@ -27,6 +29,7 @@ pipeline:
 
   build_linux_i386:
     image: golang:1.9.2
+    group: build
     environment:
       - CGO_ENABLED=0
       - GOOS=linux
