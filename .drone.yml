@@ -37,11 +37,11 @@ pipeline:
     commands:
       - go build -v -a -o release/linux/amd64/helloworld
 
-  # publish_server:
-  #   image: plugins/docker
-  #   pull: true
-  #   repo: appleboy/helloworld
-  #   secrets: [ docker_username, docker_password ]
-  #   default_tags: true
-  #   when:
-  #     event: [ push, tag ]
+  publish_server:
+    image: plugins/docker
+    pull: true
+    repo: appleboy/helloworld
+    secrets: [ docker_username, docker_password ]
+    default_tags: true
+    when:
+      event: [ push, tag ]
