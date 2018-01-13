@@ -18,7 +18,7 @@ pipeline:
       - go test -v .
 
   build_linux_amd64:
-    image: golang:1.9.2
+    image: golang:1.9
     group: build
     environment:
       - CGO_ENABLED=0
@@ -28,7 +28,7 @@ pipeline:
       - go build -v -a -o release/linux/amd64/helloworld
 
   build_linux_i386:
-    image: golang:1.9.2
+    image: golang:1.9
     group: build
     environment:
       - CGO_ENABLED=0
@@ -45,4 +45,3 @@ pipeline:
     default_tags: true
     when:
       event: [ push, tag ]
-      local: false
