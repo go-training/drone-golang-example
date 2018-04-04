@@ -31,6 +31,6 @@ pipeline:
     environment:
       - CGO_ENABLED=0
       - GOOS=linux
-      - GOARCH=486
+      - GOARCH=386
     commands:
       - go build -v -a -o release/linux/i386/helloworld
