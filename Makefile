@@ -7,3 +7,6 @@ build_linux_i386:
 
 docker:
 	docker build -t appleboy/helloworld .
+
+test:
+	go test -v .
