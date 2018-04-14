@@ -32,7 +32,7 @@ pipeline:
     pull: true
     secrets: [ docker_username, docker_password ]
     group: release
-    repo: ${DRONE_REPO}
+    repo: appleboy/test
     auto_tag: true
     dockerfile: Dockerfile
     when:
