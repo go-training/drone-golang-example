@@ -9,24 +9,19 @@ steps:
   - go test -v .
   - go vet
 
-# pipeline:
-#   testing:
-#     image: golang:1.10.0
-#     commands:
-#       - go test -v .
-#       - go vet
+- name: build_linux_amd64
+  image: golang:1.11
+  group: build
+  pull: true
+  commands:
+  - make build_linux_amd64
 
-#   build_linux_amd64:
-#     image: golang:1.10.0
-#     group: build
-#     commands:
-#       - make build_linux_amd64
-
-#   build_linux_i386:
-#     image: golang:1.10.0
-#     group: build
-#     commands:
-#       - make build_linux_i386
+- name: build_linux_i386
+  image: golang:1.11
+  group: build
+  pull: true
+  commands:
+  - make build_linux_i386
 
 #   publish_linux_amd64:
 #     image: plugins/docker:17.05
