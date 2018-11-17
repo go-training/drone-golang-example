@@ -23,7 +23,7 @@ steps:
   commands:
   - make build_linux_amd64
 
---
+---
 
 kind: pipeline
 name: build
