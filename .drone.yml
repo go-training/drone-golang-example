@@ -1,6 +1,10 @@
 kind: pipeline
 name: default
 
+clone:
+  depth: true
+  tag: true
+
 steps:
 - name: testing
   image: golang:1.11
