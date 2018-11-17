@@ -2,10 +2,14 @@ kind: pipeline
 name: default
 
 clone:
-  depth: true
-  tag: true
+  depth: 50
 
 steps:
+- name: fetch
+  image: docker:git
+  commands:
+  - git fetch --tags
+
 - name: testing
   image: golang:1.11
   pull: true
