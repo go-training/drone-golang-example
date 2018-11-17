@@ -50,6 +50,20 @@ steps:
   commands:
   - make build_linux_amd64
 
+- name: publish
+  image: plugins/docker:17.12
+  settings:
+    repo: appleboy/test
+    auto_tag: true
+    dockerfile: Dockerfile
+    docker_username:
+      from_secret: docker_username
+    docker_password:
+      from_secret: docker_password
+  when:
+    event:
+    - push
+    - tag
 
 #   publish_linux_amd64:
 #     image: plugins/docker:17.05
