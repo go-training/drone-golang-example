@@ -47,6 +47,9 @@ steps:
     - push
     - tag
 
+depends_on:
+- testing
+
 ---
 kind: pipeline
 name: build_linux_amd64
@@ -80,3 +83,6 @@ steps:
     event:
     - push
     - tag
+
+depends_on:
+- testing
