@@ -19,14 +19,18 @@ steps:
 
 - name: build_linux_amd64
   image: golang:1.11
-  group: build
   pull: true
   commands:
   - make build_linux_amd64
 
+--
+
+kind: pipeline
+name: build
+
+steps:
 - name: build_linux_i386
   image: golang:1.11
-  group: build
   pull: true
   commands:
   - make build_linux_i386
