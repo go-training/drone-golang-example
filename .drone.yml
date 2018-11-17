@@ -1,53 +1,54 @@
-workspace:
-  base: /go
-  path: src/github.com/go-training/drone-golang-example
+kind: pipeline
+name: default
 
-clone:
-  git:
-    image: plugins/git
-    depth: 50
-    tags: true
+steps:
+- name: testing
+  image: golang:1.11
+  pull: true
+  commands:
+  - go test -v .
+  - go vet
 
-pipeline:
-  testing:
-    image: golang:1.11
-    commands:
-      - go test -v .
-      - go vet
+# pipeline:
+#   testing:
+#     image: golang:1.10.0
+#     commands:
+#       - go test -v .
+#       - go vet
 
-  build_linux_amd64:
-    image: golang:1.10.0
-    group: build
-    commands:
-      - make build_linux_amd64
+#   build_linux_amd64:
+#     image: golang:1.10.0
+#     group: build
+#     commands:
+#       - make build_linux_amd64
 
-  build_linux_i386:
-    image: golang:1.10.0
-    group: build
-    commands:
-      - make build_linux_i386
+#   build_linux_i386:
+#     image: golang:1.10.0
+#     group: build
+#     commands:
+#       - make build_linux_i386
 
-  publish_linux_amd64:
-    image: plugins/docker:17.05
-    pull: true
-    secrets: [ docker_username, docker_password ]
-    group: release
-    repo: appleboy/test
-    auto_tag: true
-    dockerfile: Dockerfile
-    when:
-      event: [ push, tag ]
-      local: false
+#   publish_linux_amd64:
+#     image: plugins/docker:17.05
+#     pull: true
+#     secrets: [ docker_username, docker_password ]
+#     group: release
+#     repo: appleboy/test
+#     auto_tag: true
+#     dockerfile: Dockerfile
+#     when:
+#       event: [ push, tag ]
+#       local: false
 
-  publish_alpine:
-    image: plugins/docker
-    group: release
-    pull: true
-    dockerfile: Dockerfile.alpine
-    secrets: [ docker_username, docker_password ]
-    default_tags: true
-    default_suffix: alpine
-    repo: appleboy/test
-    when:
-      event: [ push, tag ]
-      local: false
+#   publish_alpine:
+#     image: plugins/docker
+#     group: release
+#     pull: true
+#     dockerfile: Dockerfile.alpine
+#     secrets: [ docker_username, docker_password ]
+#     default_tags: true
+#     default_suffix: alpine
+#     repo: appleboy/test
+#     when:
+#       event: [ push, tag ]
+#       local: false
