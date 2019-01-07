@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 )
 
 // HelloWorld for hello world
@@ -14,7 +15,7 @@ func HelloWorld() string {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	log.Println("http request.")
+	log.Printf("Got http request. time: %v", time.Now())
 	fmt.Fprintf(w, "I love %s!", r.URL.Path[1:])
 }
 
