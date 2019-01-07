@@ -5,12 +5,12 @@ clone:
   depth: 50
 
 steps:
-- name: testing
-  image: golang:1.11
-  pull: true
-  commands:
-  - go test -v .
-  - go vet
+  - name: testing
+    image: golang:1.11
+    pull: true
+    commands:
+      - go test -v .
+      - go vet
 
 ---
 kind: pipeline
@@ -20,35 +20,35 @@ clone:
   depth: 50
 
 steps:
-- name: fetch
-  image: docker:git
-  commands:
-  - git fetch --tags
+  - name: fetch
+    image: docker:git
+    commands:
+      - git fetch --tags
 
-- name: binary
-  image: golang:1.11
-  pull: true
-  commands:
-  - make build_linux_i386
+  - name: binary
+    image: golang:1.11
+    pull: true
+    commands:
+      - make build_linux_i386
 
-- name: publish
-  image: plugins/docker:17.12
-  settings:
-    repo: appleboy/test
-    auto_tag: true
-    dockerfile: Dockerfile.alpine
-    default_suffix: alpine
-    username:
-      from_secret: docker_username
-    password:
-      from_secret: docker_password
-  when:
-    event:
-    - push
-    - tag
+  - name: publish
+    image: plugins/docker:17.12
+    settings:
+      repo: appleboy/test
+      auto_tag: true
+      dockerfile: Dockerfile.alpine
+      default_suffix: alpine
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+    when:
+      event:
+        - push
+        - tag
 
 depends_on:
-- testing
+  - testing
 
 ---
 kind: pipeline
@@ -58,31 +58,31 @@ clone:
   depth: 50
 
 steps:
-- name: fetch
-  image: docker:git
-  commands:
-  - git fetch --tags
+  - name: fetch
+    image: docker:git
+    commands:
+      - git fetch --tags
 
-- name: binary
-  image: golang:1.11
-  pull: true
-  commands:
-  - make build_linux_amd64
+  - name: binary
+    image: golang:1.11
+    pull: true
+    commands:
+      - make build_linux_amd64
 
-- name: publish
-  image: plugins/docker:17.12
-  settings:
-    repo: appleboy/test
-    auto_tag: true
-    dockerfile: Dockerfile
-    username:
-      from_secret: docker_username
-    password:
-      from_secret: docker_password
-  when:
-    event:
-    - push
-    - tag
+  - name: publish
+    image: plugins/docker:17.12
+    settings:
+      repo: appleboy/test
+      auto_tag: true
+      dockerfile: Dockerfile
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+    when:
+      event:
+        - push
+        - tag
 
 depends_on:
-- testing
+  - testing
