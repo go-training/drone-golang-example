@@ -13,7 +13,7 @@ services:
     labels:
       - "traefik.docker.network=web"
       - "traefik.enable=true"
-      - "traefik.basic.frontend.rule=Host:traefik.domain1"
+      - "traefik.basic.frontend.rule=Host:domain1.com"
       - "traefik.basic.port=8080"
       - "traefik.basic.protocol=http"
 
@@ -29,7 +29,7 @@ services:
     labels:
       - "traefik.docker.network=web"
       - "traefik.enable=true"
-      - "traefik.basic.frontend.rule=Host:traefik.domain2"
+      - "traefik.basic.frontend.rule=Host:domain2.com"
       - "traefik.basic.port=8080"
       - "traefik.basic.protocol=http"
 
