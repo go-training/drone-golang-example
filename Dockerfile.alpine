@@ -8,6 +8,6 @@ LABEL maintainer="Bo-Yi Wu <appleboy.tw@gmail.com>" \
 RUN apk add --no-cache ca-certificates && \
   rm -rf /var/cache/apk/*
 
-ADD release/linux/i386/helloworld /bin/
+ADD release/linux/amd64/helloworld /bin/
 
 ENTRYPOINT ["/bin/helloworld"]
