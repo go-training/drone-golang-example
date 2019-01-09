@@ -84,5 +84,18 @@ steps:
         - push
         - tag
 
+  - name: ssh
+    image: appleboy/drone-ssh
+    pull: true
+    settings:
+      host: demo1.ggz.tw
+      user: ubuntu
+      key:
+        from_secret: deploy_key
+      script:
+        - docker-compose pull app_1 app_2
+        - docker-compose up -d --force-recreate --no-deps app_1
+        - docker images --quiet --filter=dangling=true | xargs --no-run-if-empty docker rmi -f
+
 depends_on:
   - testing
