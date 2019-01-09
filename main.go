@@ -16,7 +16,7 @@ func HelloWorld() string {
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Got http request. time: %v", time.Now())
-	fmt.Fprintf(w, "I love %s!", r.URL.Path[1:])
+	fmt.Fprintf(w, "I love %s!, %s", r.URL.Path[1:], HelloWorld())
 }
 
 func pinger(port string) error {
