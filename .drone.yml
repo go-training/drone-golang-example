@@ -2,7 +2,7 @@ kind: pipeline
 name: clone
 
 clone:
-  disable: true
+  depth: 1
 
 steps:
 - name: fetch
