@@ -1,4 +1,23 @@
 kind: pipeline
+name: clone
+
+clone:
+  disable: true
+
+steps:
+- name: fetch
+  image: docker:git
+  commands:
+  - git fetch --tags
+
+- name: build
+  image: golang:1.12
+  commands:
+  - pwd
+
+---
+
+kind: pipeline
 name: testing
 
 clone:
