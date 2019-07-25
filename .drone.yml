@@ -1,6 +1,10 @@
 kind: pipeline
 name: clone
 
+workspace:
+  base: /home
+  path: src/github.com/octocat/hello-world
+
 clone:
   depth: 1
 
