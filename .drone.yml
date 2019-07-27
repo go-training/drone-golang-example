@@ -14,10 +14,25 @@ steps:
   commands:
   - git fetch --tags
 
-- name: build
+- name: build_01
   image: golang:1.12
   commands:
   - pwd
+  - sleep 10
+
+- name: build_02
+  image: golang:1.12
+  commands:
+  - pwd
+  - sleep 5
+
+- name: build_all
+  image: golang:1.12
+  commands:
+  - pwd
+  depend_on:
+    - build_01
+    - build_02
 
 ---
 
