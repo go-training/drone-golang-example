@@ -30,7 +30,7 @@ steps:
   image: golang:1.12
   commands:
   - pwd
-  depend_on:
+  depends_on:
     - build_01
     - build_02
 
