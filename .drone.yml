@@ -1,12 +1,5 @@
 kind: pipeline
-name: clone
-
-workspace:
-  base: /home
-  path: src/github.com/octocat/hello-world
-
-clone:
-  depth: 1
+name: default
 
 steps:
 - name: fetch
@@ -39,102 +32,19 @@ steps:
 kind: pipeline
 name: testing
 
-clone:
-  depth: 50
-
 steps:
-  - name: testing
-    image: golang:1.11
-    pull: true
-    commands:
-      - go test -v .
-      - go vet
+- name: stage
+  image: golang
+  commands:
+  - echo "stage"
+  when:
+    event: [ promote ]
+    target: [ staging ]
 
----
-kind: pipeline
-name: build_linux_i386
-
-clone:
-  depth: 50
-
-steps:
-  - name: fetch
-    image: docker:git
-    commands:
-      - git fetch --tags
-
-  - name: binary
-    image: golang:1.11
-    pull: true
-    commands:
-      - make build_linux_amd64
-
-  - name: publish
-    image: plugins/docker:17.12
-    settings:
-      repo: appleboy/test
-      auto_tag: true
-      dockerfile: Dockerfile.alpine
-      default_suffix: alpine
-      username:
-        from_secret: docker_username
-      password:
-        from_secret: docker_password
-    when:
-      event:
-        - push
-        - tag
-
-  - name: ssh
-    image: appleboy/drone-ssh
-    pull: true
-    settings:
-      host: demo1.ggz.tw
-      user: ubuntu
-      key:
-        from_secret: deploy_key
-      script:
-        - docker-compose pull app_1 app_2
-        - docker-compose up -d --force-recreate --no-deps app_1
-        - docker-compose up -d --force-recreate --no-deps app_2
-        - docker images --quiet --filter=dangling=true | xargs --no-run-if-empty docker rmi -f
-
-depends_on:
-  - testing
-
----
-kind: pipeline
-name: build_linux_amd64
-
-clone:
-  depth: 50
-
-steps:
-  - name: fetch
-    image: docker:git
-    commands:
-      - git fetch --tags
-
-  - name: binary
-    image: golang:1.11
-    pull: true
-    commands:
-      - make build_linux_amd64
-
-  - name: publish
-    image: plugins/docker:17.12
-    settings:
-      repo: appleboy/test
-      auto_tag: true
-      dockerfile: Dockerfile
-      username:
-        from_secret: docker_username
-      password:
-        from_secret: docker_password
-    when:
-      event:
-        - push
-        - tag
-
-depends_on:
-  - testing
+- name: production
+  image: golang
+  commands:
+  - echo "production"
+  when:
+    event: [ promote ]
+    target: [ production ]
