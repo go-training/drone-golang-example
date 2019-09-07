@@ -2,57 +2,7 @@ kind: pipeline
 name: default
 
 steps:
-- name: fetch
-  image: docker:git
+- name: build
+  image: golang:1.13
   commands:
-  - git fetch --tags
-
-- name: build_01
-  image: golang:1.12
-  commands:
-  - pwd
-  - sleep 10
-
-- name: build_02
-  image: golang:1.12
-  commands:
-  - pwd
-  - sleep 5
-
-- name: build_all
-  image: golang:1.12
-  commands:
-  - pwd
-  depends_on:
-    - build_01
-    - build_02
-
----
-
-kind: pipeline
-name: testing
-
-steps:
-- name: stage
-  image: golang
-  commands:
-  - echo "stage"
-  when:
-    event: [ promote ]
-    target: [ staging ]
-
-- name: production
-  image: golang
-  commands:
-  - echo "production"
-  when:
-    event: [ promote ]
-    target: [ production ]
-
-- name: testing
-  image: golang
-  commands:
-  - echo "testing"
-  when:
-    event: [ promote ]
-    target: [ testing ]
+  - go build -o main .
