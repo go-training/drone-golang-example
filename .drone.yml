@@ -48,3 +48,11 @@ steps:
   when:
     event: [ promote ]
     target: [ production ]
+
+- name: testing
+  image: golang
+  commands:
+  - echo "testing"
+  when:
+    event: [ promote ]
+    target: [ testing ]
