@@ -6,3 +6,13 @@ steps:
   image: golang:1.13
   commands:
   - make build_linux_amd64
+
+- name: docker
+  image: plugins/docker
+  settings:
+    registry: docker.pkg.github.com
+    repo: appleboy/helloworld
+    auto_tag: true
+    auto_tag_suffix: linux-amd64
+    username: appleboy
+    password: 2d8a5b60b76c668df7d26a8c43df5ad23fec6202
