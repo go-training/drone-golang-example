@@ -11,7 +11,7 @@ steps:
   image: plugins/docker
   settings:
     registry: docker.pkg.github.com
-    repo: appleboy/test/helloworld
+    repo: docker.pkg.github.com/appleboy/test/helloworld
     auto_tag: true
     auto_tag_suffix: linux-amd64
     username: appleboy
