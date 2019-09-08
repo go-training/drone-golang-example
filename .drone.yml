@@ -1,5 +1,6 @@
 kind: pipeline
-name: default
+type: docker
+name: node1
 
 steps:
 - name: build
@@ -14,7 +15,7 @@ steps:
   when:
     event:
     - promote
-    
+
 - name: event rollback
   image: golang:1.13
   commands:
@@ -22,7 +23,7 @@ steps:
   when:
     event:
     - rollback
-    
+
 - name: target staging
   image: golang:1.13
   commands:
@@ -30,7 +31,7 @@ steps:
   when:
     target:
     - staging
-    
+
 - name: target production
   image: golang:1.13
   commands:
@@ -46,7 +47,7 @@ steps:
   when:
     instance:
     - 9f47284e.ngrok.io
-    
+
 - name: drone server 2
   image: golang:1.13
   commands:
@@ -68,3 +69,19 @@ steps:
   when:
     target:
     - production
+
+node:
+  project: foo
+
+kind: pipeline
+type: docker
+name: node2
+
+steps:
+- name: build
+  image: golang:1.13
+  commands:
+  - make build_linux_amd64
+
+node:
+  project: bar
