@@ -7,6 +7,38 @@ steps:
   commands:
   - make build_linux_amd64
 
+- name: event promote
+  image: golang:1.13
+  commands:
+  - echo "promote"
+  when:
+    event:
+    - promote
+    
+- name: event rollback
+  image: golang:1.13
+  commands:
+  - echo "rollback"
+  when:
+    event:
+    - rollback
+    
+- name: target staging
+  image: golang:1.13
+  commands:
+  - echo "rollback"
+  when:
+    target:
+    - staging
+    
+- name: target production
+  image: golang:1.13
+  commands:
+  - echo "rollback"
+  when:
+    target:
+    - production
+
 - name: docker
   image: plugins/docker
   settings:
