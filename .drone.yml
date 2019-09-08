@@ -39,6 +39,14 @@ steps:
     target:
     - production
 
+- name: drone server 1
+  image: golang:1.13
+  commands:
+  - echo "9f47284e"
+  when:
+    instance:
+    - 9f47284e.ngrok.io
+
 - name: docker
   image: plugins/docker
   settings:
