@@ -10,7 +10,7 @@ steps:
 - name: event promote
   image: golang:1.13
   commands:
-  - echo "promote"
+  - echo "event promote"
   when:
     event:
     - promote
@@ -18,7 +18,7 @@ steps:
 - name: event rollback
   image: golang:1.13
   commands:
-  - echo "rollback"
+  - echo "event rollback"
   when:
     event:
     - rollback
@@ -26,7 +26,7 @@ steps:
 - name: target staging
   image: golang:1.13
   commands:
-  - echo "rollback"
+  - echo "staging"
   when:
     target:
     - staging
@@ -34,7 +34,7 @@ steps:
 - name: target production
   image: golang:1.13
   commands:
-  - echo "rollback"
+  - echo "production"
   when:
     target:
     - production
