@@ -7,6 +7,7 @@ steps:
   commands:
   - make build_linux_amd64
 
+
 - name: docker
   image: plugins/docker
   settings:
