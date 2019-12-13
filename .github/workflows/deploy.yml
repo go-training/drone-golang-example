@@ -24,7 +24,6 @@ jobs:
     - name: Build binary
       run: |
         make build_linux_amd64
-        ./release/linux/adm64/helloworld -h
 
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
