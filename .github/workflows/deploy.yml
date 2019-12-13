@@ -5,20 +5,6 @@ on:
       - master
   pull_request:
 jobs:
-  lint:
-    strategy:
-      matrix:
-        platform: [ubuntu-latest]
-    runs-on: ${{ matrix.platform }}
-    container: 'golang:1.13'
-    steps:
-    - name: Check out code
-      uses: actions/checkout@v1
-    - name: Lint Go Code
-      run: |
-        export PATH=$PATH:$(go env GOPATH)/bin
-        make lint
-
   build:
     strategy:
       matrix:
@@ -38,12 +24,12 @@ jobs:
     - name: Build binary
       run: |
         make build_linux_amd64
-        ./release/linux/adm64/api -h
+        ./release/linux/adm64/helloworld -h
 
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: appleboy/paymary-api
-        username: ${{ secrets.docker_username }}
+        name: appleboy/helloworld
+        username: appleboy
         password: ${{ secrets.docker_password }}
-        dockerfile: docker/api/Dockerfile.linux.amd64
+        dockerfile: docker/helloworld/Dockerfile.linux.amd64
