@@ -32,3 +32,13 @@ jobs:
         username: appleboy
         password: ${{ secrets.docker_password }}
         dockerfile: docker/helloworld/Dockerfile.linux.amd64
+
+    - name: Update the API service
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.ssh_host }}
+        username: deploy
+        key: ${{ secrets.ssh_key }}
+        script: |
+          whoami
+          ls -al
