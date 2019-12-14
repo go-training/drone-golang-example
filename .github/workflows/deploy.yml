@@ -39,6 +39,6 @@ jobs:
         host: ${{ secrets.ssh_host }}
         username: deploy
         key: ${{ secrets.ssh_key }}
+        script_stop: true
         script: |
-          whoami
-          ls -al
+          cd golang && docker-compose pull && docker-compose up -d
