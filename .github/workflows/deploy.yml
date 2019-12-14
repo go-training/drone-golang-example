@@ -21,6 +21,10 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v1
 
+    - name: Tesing
+      run: |
+        make test
+
     - name: Build binary
       run: |
         make build_linux_amd64
