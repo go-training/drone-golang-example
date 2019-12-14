@@ -11,7 +11,7 @@ import (
 
 // HelloWorld for hello world
 func HelloWorld() string {
-	return "Hello GitHub Actions, traefik workshop!"
+	return "Trigger GitHub Actions, traefik workshop!"
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
