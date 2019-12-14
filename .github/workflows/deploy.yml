@@ -30,7 +30,7 @@ jobs:
         make build_linux_amd64
 
     - name: Publish to Registry
-      uses: elgohr/Publish-Docker-Github-Action@master
+      uses: elgohr/Publish-Docker-Github-Action@2.9
       with:
         name: appleboy/helloworld
         username: appleboy
@@ -38,7 +38,7 @@ jobs:
         dockerfile: docker/helloworld/Dockerfile.linux.amd64
 
     - name: Update the API service
-      uses: appleboy/ssh-action@master
+      uses: appleboy/ssh-action@v0.0.6
       with:
         host: ${{ secrets.ssh_host }}
         username: deploy
