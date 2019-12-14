@@ -8,7 +8,7 @@ jobs:
   build:
     strategy:
       matrix:
-        go-version: [1.13.x]
+        go-version: [1.13.x, 1.12.x]
         platform: [ubuntu-latest]
     runs-on: ${{ matrix.platform }}
     # container: 'golang:1.13'
