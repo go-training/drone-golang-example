@@ -8,9 +8,6 @@ steps:
   commands:
   - make build_linux_amd64
 
-node:
-  project: foo
-
 ---
 kind: pipeline
 type: docker
@@ -21,6 +18,3 @@ steps:
   image: golang:1.13
   commands:
   - make build_linux_amd64
-
-node:
-  project: bar
