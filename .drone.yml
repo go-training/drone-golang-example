@@ -1,6 +1,6 @@
 kind: pipeline
 type: docker
-name: node1
+name: linux_amd64
 
 steps:
 - name: build
@@ -11,10 +11,10 @@ steps:
 ---
 kind: pipeline
 type: docker
-name: node2
+name: linux_i386
 
 steps:
 - name: build
   image: golang:1.13
   commands:
-  - make build_linux_amd64
+  - make build_linux_i386
