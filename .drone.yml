@@ -1,6 +1,6 @@
 kind: pipeline
 type: docker
-name: linux_amd64
+name: build and test
 
 steps:
 - name: build
@@ -8,18 +8,7 @@ steps:
   commands:
   - make build_linux_amd64
 
----
-kind: pipeline
-type: docker
-name: linux_i386
-
-environment:
-  GOOS: linux
-  GOARCH: 386
-  CGO_ENABLED: 0
-
-steps:
-- name: build
+- name: test
   image: golang:1.17
   commands:
-  - make build_linux_i386
+  - make test
