@@ -13,12 +13,13 @@ kind: pipeline
 type: docker
 name: linux_i386
 
+environment:
+  GOOS: linux
+  GOARCH: 386
+  CGO_ENABLED: 0
+
 steps:
 - name: build
   image: golang:1.17
-  environment:
-    GOOS: linux
-    GOARCH: 386
-    CGO_ENABLED: 0
   commands:
   - make build_linux_i386
