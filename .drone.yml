@@ -1,35 +1,35 @@
-kind: pipeline
-type: docker
-name: linux_amd64
+# kind: pipeline
+# type: docker
+# name: linux_amd64
 
-environment:
-  GOOS: linux
-  GOARCH: amd64
-  CGO_ENABLED: 0
+# environment:
+#   GOOS: linux
+#   GOARCH: amd64
+#   CGO_ENABLED: 0
 
-steps:
-- name: build-linux-amd64
-  image: golang:1.17
-  commands:
-  - make build
-  - ./release/linux/amd64/helloworld -h
+# steps:
+# - name: build-linux-amd64
+#   image: golang:1.17
+#   commands:
+#   - make build
+#   - ./release/linux/amd64/helloworld -h
 
----
-kind: pipeline
-type: docker
-name: linux_386
+# ---
+# kind: pipeline
+# type: docker
+# name: linux_386
 
-environment:
-  GOOS: linux
-  GOARCH: 386
-  CGO_ENABLED: 0
+# environment:
+#   GOOS: linux
+#   GOARCH: 386
+#   CGO_ENABLED: 0
 
-steps:
-- name: build-linux-386
-  image: golang:1.17
-  commands:
-  - make build
-  - ./release/linux/386/helloworld -h
+# steps:
+# - name: build-linux-386
+#   image: golang:1.17
+#   commands:
+#   - make build
+#   - ./release/linux/386/helloworld -h
 
 
 ---
@@ -57,3 +57,11 @@ steps:
   commands:
   - make build
   - ./release/linux/amd64/helloworld -h
+
+- name: notify
+  image: golang:1.17
+  commands:
+  - echo "Done!"
+  depends_on:
+  - build-linux-amd64
+  - build-linux-386
