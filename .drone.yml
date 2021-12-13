@@ -30,3 +30,30 @@ steps:
   commands:
   - make build
   - ./release/linux/386/helloworld -h
+
+
+---
+kind: pipeline
+type: docker
+name: build_all
+
+steps:
+- name: build-linux-386
+  image: golang:1.17
+  environment:
+    GOOS: linux
+    GOARCH: 386
+    CGO_ENABLED: 0
+  commands:
+  - make build
+  - ./release/linux/386/helloworld -h
+
+- name: build-linux-amd64
+  image: golang:1.17
+  environment:
+    GOOS: linux
+    GOARCH: amd64
+    CGO_ENABLED: 0
+  commands:
+  - make build
+  - ./release/linux/amd64/helloworld -h
