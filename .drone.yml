@@ -2,6 +2,9 @@ kind: pipeline
 type: docker
 name: linux_amd64
 
+clone:
+  disable: true
+
 steps:
 - name: build-linux-amd64
   image: golang:1.17
