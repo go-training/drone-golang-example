@@ -8,7 +8,7 @@ steps:
   commands:
   - make build_linux_amd64
 
-- name: test
+- name: testing
   image: golang:1.17
   commands:
   - make test
