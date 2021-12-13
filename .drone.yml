@@ -1,10 +1,9 @@
 kind: pipeline
 type: docker
-name: default
+name: linux_amd64
 
 steps:
-- name: greeting
-  image: alpine
+- name: build
+  image: golang:1.17
   commands:
-  - echo hello
-  - echo world
+  - make build_linux_amd64
