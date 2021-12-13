@@ -1,14 +1,10 @@
 kind: pipeline
 type: docker
-name: build and test
+name: default
 
 steps:
-- name: build
-  image: golang:1.17
+- name: greeting
+  image: alpine
   commands:
-  - make build_linux_amd64
-
-- name: testing
-  image: golang:1.17
-  commands:
-  - make test
+  - echo hello
+  - echo world
