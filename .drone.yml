@@ -2,13 +2,14 @@ kind: pipeline
 type: docker
 name: linux_amd64
 
+environment:
+  GOOS: linux
+  GOARCH: amd64
+  CGO_ENABLED: 0
+
 steps:
 - name: build-linux-amd64
   image: golang:1.17
-  environment:
-    GOOS: linux
-    GOARCH: amd64
-    CGO_ENABLED: 0
   commands:
   - make build
   - ./release/linux/amd64/helloworld -h
@@ -18,13 +19,14 @@ kind: pipeline
 type: docker
 name: linux_386
 
+environment:
+  GOOS: linux
+  GOARCH: 386
+  CGO_ENABLED: 0
+
 steps:
 - name: build-linux-386
   image: golang:1.17
-  environment:
-    GOOS: linux
-    GOARCH: 386
-    CGO_ENABLED: 0
   commands:
   - make build
   - ./release/linux/386/helloworld -h
