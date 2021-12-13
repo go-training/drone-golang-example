@@ -5,6 +5,9 @@ build_linux_amd64:
 build_linux_i386:
 	go build -v -a -o release/${GOOS}/${GOARCH}/helloworld
 
+build:
+	go build -v -a -o release/${GOOS}/${GOARCH}/helloworld
+
 docker:
 	docker build -t appleboy/helloworld .
 

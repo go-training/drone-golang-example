@@ -3,7 +3,20 @@ type: docker
 name: linux_amd64
 
 steps:
-- name: build
+- name: build-linux-amd64
   image: golang:1.17
+  environment:
+    GOOS: linux
+    GOARCH: amd64
+    CGO_ENABLED: 0
   commands:
-  - make build_linux_amd64
+  - make build
+
+- name: build-linux-386
+  image: golang:1.17
+  environment:
+    GOOS: linux
+    GOARCH: 386
+    CGO_ENABLED: 0
+  commands:
+  - make build
