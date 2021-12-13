@@ -11,6 +11,7 @@ steps:
     CGO_ENABLED: 0
   commands:
   - make build
+  - ./release/linux/amd64/helloworld -h
 
 ---
 kind: pipeline
@@ -26,3 +27,4 @@ steps:
     CGO_ENABLED: 0
   commands:
   - make build
+  - ./release/linux/386/helloworld -h
